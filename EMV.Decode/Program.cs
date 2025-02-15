@@ -1,6 +1,4 @@
-﻿
-
-namespace EMV.Decode
+﻿namespace EMV.Decode
 {
     public class Program
     {
@@ -8,7 +6,13 @@ namespace EMV.Decode
         {
             Console.WriteLine("Informe o código Pix (copia e cola):");
 
-            string pixCode = Console.ReadLine();
+            string? pixCode = Console.ReadLine();
+            
+            if (string.IsNullOrEmpty(pixCode))
+            {
+                Console.WriteLine("Código Pix não pode ser vazio.");
+                return;
+            }
 
             try
             {

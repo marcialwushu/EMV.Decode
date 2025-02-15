@@ -7,8 +7,14 @@ namespace JwtDecoder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Informe o JWT:");
-            string jwt = Console.ReadLine();
+            Console.WriteLine("Enter the JWT token:");
+            string? jwt = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(jwt))
+            {
+                Console.WriteLine("JWT token cannot be empty.");
+                return;
+            }
 
             var handler = new JwtSecurityTokenHandler();
             var jsonToken = handler.ReadToken(jwt) as JwtSecurityToken;
@@ -35,13 +41,13 @@ namespace JwtDecoder
 
                 foreach (var tag in claims)
                 {
-                    var vemvData = tag;
-                    Console.WriteLine(vemvData);
+                    var claimData = tag;
+                    Console.WriteLine(claimData);
                 }
             }
             else
             {
-                Console.WriteLine("Token JWT inválido.");
+                Console.WriteLine("Invalid JWT token.");
             }
         }
     }
